@@ -17,7 +17,7 @@ import ghidra.framework.cmd.BackgroundCommand;
 import ghidra.framework.model.DomainObjectListener;
 import ghidra.framework.plugintool.PluginTool;
 import ghidra.program.database.DataTypeArchiveDB;
-import ghidra.program.database.data.ProjectDataTypeManager;
+import ghidra.program.model.data.StandAloneDataTypeManager;
 
 import cppclassanalyzer.data.ArchivedRttiData;
 import cppclassanalyzer.data.ClassTypeInfoManager;
@@ -53,7 +53,7 @@ import resources.ResourceManager;
 /**
  * A ClassTypeInfoManager representing a project containing external libraries
  */
-public final class ProjectClassTypeInfoManager extends ProjectDataTypeManager
+public final class ProjectClassTypeInfoManager extends StandAloneDataTypeManager
 		implements FileArchiveClassTypeInfoManager {
 
 	private static final Icon[] ICONS = new Icon[] {
