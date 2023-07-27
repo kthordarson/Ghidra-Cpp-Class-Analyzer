@@ -21,7 +21,7 @@ import docking.widgets.tree.GTree;
 
 import ghidra.program.model.listing.Program;
 import ghidra.util.classfinder.ClassSearcher;
-
+import ghidra.util.exception.CancelledException;
 //@formatter:off
 @ServiceInfo(
 	defaultProvider = ClassTypeInfoManagerPlugin.class,
@@ -33,15 +33,15 @@ public interface ClassTypeInfoManagerService {
 	public void closeManager(ClassTypeInfoManager manager);
 
 	public default void openArchive(File archive)
-			throws IOException, DuplicateIdException {
+			throws IOException, DuplicateIdException, CancelledException {
 		openArchive(archive, false);
 	}
 
 	public void openArchive(File archive, boolean updateable)
-		throws IOException, DuplicateIdException;
+		throws IOException, DuplicateIdException, CancelledException;
 
 	public void createArchive(File archive)
-		throws IOException, DuplicateIdException;
+		throws IOException, DuplicateIdException, CancelledException;
 
 	public ProgramClassTypeInfoManager getManager(Program program);
 

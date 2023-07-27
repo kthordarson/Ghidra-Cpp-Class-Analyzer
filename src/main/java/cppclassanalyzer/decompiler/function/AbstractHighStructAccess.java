@@ -67,7 +67,7 @@ abstract class AbstractHighStructAccess implements HighStructAccess {
 		if (var == null) {
 			return false;
 		}
-		return hf.getLocalSymbolMap().containsVariableWithName(var.getName());
+		return false; // hf.getLocalSymbolMap().containsVariableWithName(var.getName()); // TODO fix
 	}
 
 	@Override

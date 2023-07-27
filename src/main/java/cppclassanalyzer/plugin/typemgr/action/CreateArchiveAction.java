@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 import ghidra.util.Msg;
-
+import ghidra.util.exception.CancelledException;
 import docking.ActionContext;
 
 final class CreateArchiveAction extends AbstractTypeMgrAction {
@@ -39,7 +39,7 @@ final class CreateArchiveAction extends AbstractTypeMgrAction {
 		}
 		try {
 			getHandler().getPlugin().createArchive(file);
-		} catch (IOException e) {
+		} catch (IOException | CancelledException e) {
 			Msg.error(this, e);
 		}
 	}

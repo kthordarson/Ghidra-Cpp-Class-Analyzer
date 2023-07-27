@@ -12,7 +12,7 @@ import ghidra.framework.model.DomainObjectClosedListener;
 import ghidra.framework.plugintool.PluginTool;
 import ghidra.program.model.listing.Program;
 import ghidra.util.Msg;
-
+import ghidra.util.exception.CancelledException;
 import cppclassanalyzer.data.ArchivedRttiData;
 import cppclassanalyzer.data.ClassTypeInfoManager;
 import cppclassanalyzer.data.ProgramClassTypeInfoManager;
@@ -94,14 +94,14 @@ public final class HeadlessClassTypeInfoManagerService implements ClassTypeInfoM
 	}
 
 	@Override
-	public void openArchive(File file, boolean updateable) throws IOException {
+	public void openArchive(File file, boolean updateable) throws IOException, CancelledException {
 		ClassTypeInfoManager manager =
 			ArchiveClassTypeInfoManager.open(this, file, updateable);
 		managers.add(manager);
 	}
 
 	@Override
-	public void createArchive(File file) throws IOException {
+	public void createArchive(File file) throws IOException, CancelledException {
 		ClassTypeInfoManager manager = ArchiveClassTypeInfoManager.createManager(this, file);
 		managers.add(manager);
 	}

@@ -5,7 +5,7 @@ import java.io.IOException;
 
 import ghidra.app.plugin.core.datamgr.archive.DuplicateIdException;
 import ghidra.util.Msg;
-
+import ghidra.util.exception.CancelledException;
 import docking.ActionContext;
 import docking.widgets.filechooser.GhidraFileChooser;
 
@@ -41,7 +41,7 @@ final class OpenArchiveAction extends AbstractTypeMgrAction {
 
 		try {
 			getHandler().getPlugin().openArchive(file);
-		} catch (IOException | DuplicateIdException e) {
+		} catch (IOException | DuplicateIdException | CancelledException e) {
 			Msg.error(this, e);
 		}
 	}

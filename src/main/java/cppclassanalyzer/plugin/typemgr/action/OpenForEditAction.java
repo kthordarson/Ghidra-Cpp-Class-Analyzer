@@ -7,7 +7,7 @@ import cppclassanalyzer.data.manager.FileArchiveClassTypeInfoManager;
 import cppclassanalyzer.plugin.ClassTypeInfoManagerPlugin;
 
 import ghidra.util.Msg;
-
+import ghidra.util.exception.CancelledException;
 import docking.ActionContext;
 
 final class OpenForEditAction extends AbstractFileArchivePopupAction {
@@ -45,7 +45,7 @@ final class OpenForEditAction extends AbstractFileArchivePopupAction {
 		plugin.closeManager(manager);
 		try {
 			plugin.openArchive(file, true);
-		} catch (IOException e) {
+		} catch (IOException | CancelledException e) {
 			Msg.showError(plugin, null, "Failed to open archive for editing", e);
 		}
 	}

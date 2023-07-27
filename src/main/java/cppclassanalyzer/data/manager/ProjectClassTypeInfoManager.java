@@ -82,7 +82,7 @@ public final class ProjectClassTypeInfoManager extends StandAloneDataTypeManager
 			getLock(archive), TaskMonitor.DUMMY);
 		this.archive = archive;
 		this.plugin = service;
-		setDataTypeArchive(getDB(archive));
+		//setDataTypeArchive(getDB(archive));
 		if (service instanceof ClassTypeInfoManagerPlugin) {
 			this.treeNodeManager =
 				new TypeInfoTreeNodeManager((ClassTypeInfoManagerPlugin) service, this);

@@ -19,10 +19,11 @@ public class OpenProjectArchiveDialog extends OpenVersionedFileDialog {
 	private static final HelpLocation HELP_LOCATION =
 		new HelpLocation(HelpTopics.PROGRAM, "Open_File_Dialog");
 
+	private static final Class domainObjectClass = null;
 	private final ClassTypeInfoManagerPlugin plugin;
 
 	public OpenProjectArchiveDialog(ClassTypeInfoManagerPlugin plugin) {
-		super(plugin.getTool(), "Open Project Data Type Archive", ProjectArchiveFilter.FILTER);
+		super(plugin.getTool(), "Open Project Data Type Archive", domainObjectClass);
 		this.plugin = plugin;
 		setHelpLocation(HELP_LOCATION);
 		addOkActionListener(new ProjectArchiveActionListener());
