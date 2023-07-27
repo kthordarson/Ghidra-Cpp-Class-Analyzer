@@ -186,7 +186,7 @@ public class TypeInfoUtils {
 		}
 		return null;
 	}
-	
+
 	static Relocation getRelocation(Program program, Address address) {
 		RelocationTable table = program.getRelocationTable();
 		List<Relocation> relocs = table.getRelocations(address);
@@ -316,7 +316,7 @@ public class TypeInfoUtils {
 	public static Namespace getNamespaceFromTypeName(Program program, TypeInfo type) {
 		int id = -1;
 		String typename = type.getTypeName();
-		if (program.getCurrentTransaction() == null) {
+		if (program.getCurrentTransactionInfo() == null) {
 			id = program.startTransaction("Creating namespace for " + typename);
 		}
 		try {
@@ -367,7 +367,7 @@ public class TypeInfoUtils {
 		}
 		return ns;
 	}
-	
+
 	/**
 	 * Retrieves the CategoryPath for the represented datatype
 	 * @param type the TypeInfo

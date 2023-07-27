@@ -70,7 +70,7 @@ public abstract class AbstractCppClassBuilder {
 		}
 		Integer id = null;
 		boolean success = false;
-		if (program.getCurrentTransaction() == null) {
+		if (program.getCurrentTransactionInfo() == null) {
 			id = program.startTransaction("creating datatype for "+type.getName());
 		}
 
@@ -256,20 +256,20 @@ public abstract class AbstractCppClassBuilder {
 			return index--;
 		}
 	}
-	
+
 	private static class ComponentInfo {
 		final DataType type;
 		final String name;
 		final String comment;
 		final int offset;
-		
+
 		ComponentInfo(DataTypeComponent comp) {
 			type = comp.getDataType();
 			name = comp.getFieldName();
 			comment = comp.getComment();
 			offset = comp.getOffset();
 		}
-		
+
 		void insert(Structure struct) {
 			struct.insertAtOffset(offset, type, type.getLength(), name, comment);
 		}
