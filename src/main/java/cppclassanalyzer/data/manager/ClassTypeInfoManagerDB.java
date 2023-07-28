@@ -25,6 +25,7 @@ import ghidra.program.database.map.AddressMap;
 import ghidra.program.model.address.Address;
 import ghidra.program.model.address.AddressOverflowException;
 import ghidra.program.model.data.*;
+import ghidra.program.model.lang.PrototypeModel;
 import ghidra.program.model.listing.*;
 import ghidra.program.model.symbol.*;
 import ghidra.util.Msg;
@@ -360,6 +361,14 @@ public abstract class ClassTypeInfoManagerDB implements ManagerDB, ProgramClassT
 		if (fun.getParentNamespace().isGlobal()) {
 			return null;
 		}
+		PrototypeModel cc = fun.getSignature().getCallingConvention();
+		if (cc.equals(GenericCallingConvention.thiscall)) {
+			if (!(fun.getParentNamespace() instanceof GhidraClass)) {
+				Msg.info(this, fun.getParentNamespace().getName(true)+" is not a class");
+				return null;
+		}
+		}
+		return getType((GhidraClass) fun.getParentNamespace());
 		// TODO FIX
 		// GenericCallingConvention cc = fun.getSignature().getGenericCallingConvention();
 		// if (cc.equals(GenericCallingConvention.thiscall)) {
@@ -369,7 +378,7 @@ public abstract class ClassTypeInfoManagerDB implements ManagerDB, ProgramClassT
 		// 	}
 		// 	return getType((GhidraClass) fun.getParentNamespace());
 		// }
-		return null;
+		//return null;
 	}
 
 	@Override
