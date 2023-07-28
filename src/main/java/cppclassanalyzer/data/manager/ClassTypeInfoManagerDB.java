@@ -362,20 +362,23 @@ public abstract class ClassTypeInfoManagerDB implements ManagerDB, ProgramClassT
 			return null;
 		}
 		PrototypeModel cc = fun.getSignature().getCallingConvention();
-		if (cc.equals(GenericCallingConvention.thiscall)) {
+		if (cc != null) {
+					if (cc.equals(GenericCallingConvention.thiscall)) {
 			if (!(fun.getParentNamespace() instanceof GhidraClass)) {
 				Msg.info(this, fun.getParentNamespace().getName(true)+" is not a class");
 				return null;
 		}
 		}
 		try {
-			return getType((GhidraClass) fun.getParentNamespace()); 
+			return getType((GhidraClass) fun.getParentNamespace());
 		}catch (Exception e) {
 			// // todo ERROR (SwingUpdateManager) Unexpected Exception: Unexpected exception in Swing Update Manager java.lang.ClassCastException: class ghidra.program.database.symbol.LibraryDB cannot be cast to class ghidra.program.model.listing.GhidraClass (ghidra.program.database.symbol.LibraryDB and ghidra.program.model.listing.GhidraClass are in unnamed module of loader ghidra.GhidraClassLoader @4f47d241)
 			}
+
+		}
 		return null;
 		}
-	
+
 
 	@Override
 	public ClassTypeInfoDB getType(String name) {
