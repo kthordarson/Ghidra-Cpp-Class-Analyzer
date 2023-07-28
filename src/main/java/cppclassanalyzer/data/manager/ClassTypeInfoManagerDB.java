@@ -368,8 +368,14 @@ public abstract class ClassTypeInfoManagerDB implements ManagerDB, ProgramClassT
 				return null;
 		}
 		}
-		return getType((GhidraClass) fun.getParentNamespace());
-	}
+		try {
+			return getType((GhidraClass) fun.getParentNamespace()); 
+		}catch (Exception e) {
+			// // todo ERROR (SwingUpdateManager) Unexpected Exception: Unexpected exception in Swing Update Manager java.lang.ClassCastException: class ghidra.program.database.symbol.LibraryDB cannot be cast to class ghidra.program.model.listing.GhidraClass (ghidra.program.database.symbol.LibraryDB and ghidra.program.model.listing.GhidraClass are in unnamed module of loader ghidra.GhidraClassLoader @4f47d241)
+			}
+		return null;
+		}
+	
 
 	@Override
 	public ClassTypeInfoDB getType(String name) {

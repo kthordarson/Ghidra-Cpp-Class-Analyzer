@@ -6,7 +6,8 @@ import ghidra.app.decompiler.*;
 import ghidra.app.decompiler.component.DecompilerUtils;
 import ghidra.framework.options.ToolOptions;
 import ghidra.framework.plugintool.PluginTool;
-import docking.options.OptionsService;
+//import docking.options.OptionsService;
+import ghidra.framework.plugintool.util.OptionsService;
 import ghidra.program.model.listing.Function;
 import ghidra.program.model.listing.Program;
 import ghidra.program.model.pcode.HighFunction;
@@ -127,8 +128,14 @@ public final class DecompilerAPI implements Disposable, AutoCloseable {
 			if (currentProgram != null) {
 				decompiler.closeProgram();
 			}
+			try {
 			setUpDecompiler(program);
 			this.cache = buildLargeCache();
+			}
+			catch (Exception e)
+			{
+				// todo
+			}
 		}
 	}
 
