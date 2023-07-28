@@ -369,16 +369,6 @@ public abstract class ClassTypeInfoManagerDB implements ManagerDB, ProgramClassT
 		}
 		}
 		return getType((GhidraClass) fun.getParentNamespace());
-		// TODO FIX
-		// GenericCallingConvention cc = fun.getSignature().getGenericCallingConvention();
-		// if (cc.equals(GenericCallingConvention.thiscall)) {
-		// 	if (!(fun.getParentNamespace() instanceof GhidraClass)) {
-		// 		Msg.info(this, fun.getParentNamespace().getName(true)+" is not a class");
-		// 		return null;
-		// 	}
-		// 	return getType((GhidraClass) fun.getParentNamespace());
-		// }
-		//return null;
 	}
 
 	@Override

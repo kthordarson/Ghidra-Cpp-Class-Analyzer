@@ -1,6 +1,7 @@
 package cppclassanalyzer.decompiler.function;
 
 import java.util.ArrayList;
+import java.util.*;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -8,7 +9,7 @@ import java.util.stream.Collectors;
 import ghidra.app.decompiler.*;
 import ghidra.program.model.pcode.*;
 import ghidra.program.model.scalar.Scalar;
-
+import ghidra.program.model.symbol.ReferenceIterator;
 abstract class AbstractHighStructAccess implements HighStructAccess {
 
 	private final List<ClangNode> tokens;
@@ -67,8 +68,16 @@ abstract class AbstractHighStructAccess implements HighStructAccess {
 		if (var == null) {
 			return false;
 		}
+		Iterator<HighSymbol> symIter = hf.getLocalSymbolMap().getSymbols();
+		while (symIter.hasNext()) {
+			HighSymbol sym = symIter.next();
+			if (sym.getName().contains(var.getName()) ) {
+				return true;}
+			}
 		return false; // hf.getLocalSymbolMap().containsVariableWithName(var.getName()); // TODO fix
-	}
+		}
+		
+	
 
 	@Override
 	public final List<ClangOpToken> getOpTokens() {
