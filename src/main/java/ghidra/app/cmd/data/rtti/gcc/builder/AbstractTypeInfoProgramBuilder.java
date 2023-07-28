@@ -88,7 +88,7 @@ public abstract class AbstractTypeInfoProgramBuilder extends ProgramBuilder {
 		RelocationTable table = program.getRelocationTable();
 		for (Long offset : relocationMap.keySet()) {
 			// todo fix
-			//table.add(addr(offset), 1, null, null, relocationMap.get(offset));
+			table.add(addr(offset), null, 1, null, null, relocationMap.get(offset));
 		}
 		buildTypes();
 		endTransaction();
