@@ -128,7 +128,8 @@ public abstract class AbstractCppClassAnalyzer extends AbstractAnalyzer {
 		monitor.initialize(manager.getTypeCount());
 		monitor.setMessage("Fixing Class Inheritance...");
 		for (ClassTypeInfo type : manager.getTypes()) {
-			monitor.checkCanceled();
+			//monitor.checkCanceled();
+			monitor.isCancelled();
 			if (type.getName().contains(TypeInfoModel.STRUCTURE_NAME)) {
 				// this works for both vs and gcc
 				monitor.incrementProgress(1);
