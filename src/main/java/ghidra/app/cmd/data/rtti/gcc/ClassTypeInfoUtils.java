@@ -205,7 +205,7 @@ public class ClassTypeInfoUtils {
 		return getFixedIncorrectStructure(type, dtm);
 	}
 
-	private static Structure getFixedIncorrectStructure(ClassTypeInfo type, DataTypeManager dtm) {
+	private static Structure getFixedIncorrectStructure(ClassTypeInfo type, DataTypeManager dtm) { // todo check
 		String msg = "Variable Utils returned wrong class structure! " + type.getName();
 		Msg.warn(ClassTypeInfoUtils.class, msg);
 		int id = dtm.startTransaction("getting placeholder struct for "+type.getName());
